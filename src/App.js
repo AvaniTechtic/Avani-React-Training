@@ -1,6 +1,6 @@
 import './App.css';
-import MyForm from './MyForm'; 
-import CounterApp from './CounterApp';
+import MyForm from './Component/MyForm'; 
+import CounterApp from './Component/CounterApp';
 
 function App() {
   return (
