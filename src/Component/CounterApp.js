@@ -1,31 +1,41 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-class CounterApp extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            value: 0
-        }
-    }
-    IncrementTheStateValue = () => {
-        this.setState({value : this.state.value+1})
-    }
-    DecrementTheStateValue = () => {
-        if (this.state.value > 0) {
-            this.setState({value : this.state.value-1})
-        }
-    }
-    render() {
-        return (
-            <div>
-                <h1>Props: {this.props.name}</h1>
-                <h1>{this.state.value}</h1>
-                <button type='button' onClick={this.IncrementTheStateValue}>Increment</button>
-                <button type='button' onClick={this.DecrementTheStateValue}>Decrement</button>
-                <button type='button' onClick={() => this.setState({ value: 0 })}>Reset</button>
-            </div>
-        )
-    }
-}
+const CounterApp = (props) => {
+  const [value, setValue] = useState(0);
 
-export default CounterApp
+  const IncrementTheStateValue = () => {
+    setValue(value + 1);
+  };
+
+  const DecrementTheStateValue = () => {
+    if (value > 0) {
+      setValue(value - 1);
+    }
+  };
+
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+      navigate(-1);
+  };
+
+  return (
+    <div>
+      <button onClick={handleGoBack}>Go Back</button>
+      <h1>Props: {props.name}</h1>
+      <h1>{value}</h1>
+      <button type="button" onClick={IncrementTheStateValue}>
+        Increment
+      </button>
+      <button type="button" onClick={DecrementTheStateValue}>
+        Decrement
+      </button>
+      <button type="button" onClick={() => setValue(0)}>
+        Reset
+      </button>
+    </div>
+  );
+};
+
+export default CounterApp;

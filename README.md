@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Login Screen
+The initial screen of the application is the login screen. To successfully log in, the following credentials must be entered:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Username: Avani**
 
-## Available Scripts
+**Password: Dalal**
 
-In the project directory, you can run:
+If the entered credentials are correct, the user will be redirected to the main page. Otherwise, an error alert will be displayed, indicating that the login failed.
 
-### `npm start`
+# Main Page
+After successful login, the user will be redirected to the main page. This page includes the following options:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Logout: Allows the user to log out of the application.
+* Counter: Clicking on this option will navigate the user to the Counter page.
+* To Do List: Clicking on this option will navigate the user to the To Do List page.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Counter Page
+The Counter page allows the user to perform the following actions:
 
-### `npm test`
+* Increment: Increases the counter value by one.
+* Decrement: Decreases the counter value by one. If the value is already zero, clicking the decrement button will have no effect.
+* Reset: Sets the counter value back to zero.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# To Do List Page
+The To Do List page consists of two sections:
 
-### `npm run build`
+* Task Form: Allows the user to add new tasks to the list.
+* Task List: Displays the list of tasks added by the user.
+* In the Task List section, the user can perform the following actions:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* Edit: Clicking on any row in the list enables the user to update the task value.
+* Delete: Allows the user to delete a task from the list.
+* Mark as Completed: Enables the user to mark a task as completed.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Navigation and Logout
+To navigate back to the previous page, a "Go Back" button is provided. Clicking on this button allows the user to return to the previous screen.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+To log out of the application, the user can click on the logout option available on the main page.

@@ -1,32 +1,53 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ListTodoList from './ListTodoList'
+import ToDoListForm from './toDoListForm'
+import { useNavigate } from 'react-router-dom';
 
 const ToDoList = () => {
+    const navigate = useNavigate();
+
+    const handleGoBack = () => {
+        navigate(-1);
+    };
+
     const [todoList, setTodoList] = useState([]);
-    const [input, setInput] = useState("");
-    const [updateaction, setUpdateAction] = useState(false);
-    const [backupText, setBackupText] = useState("");
+    const [input, setInput] = useState({
+        id: "",
+        task: "",
+        status: ""
+    });
+
+    useEffect(() => {
+        setInput({
+            id: "",
+            task: "",
+            status: ""
+        });
+    }, [todoList])
 
     const addDataToList = (e) => {
         e.preventDefault();
-        if (input) {
+        console.log(input)
+        if (input.task && input.id) {
+            let tmp = todoList
+            let idx = todoList.findIndex(rec => rec.id === input.id)
+            tmp[idx].task = input.task;
+            tmp[idx].status = input.status;
+            setTodoList([...tmp]);
+        } else if (input.task) {
             const id = todoList.length + 1;
             setTodoList((prev) => [
               ...prev,
               {
                 id: id,
-                task: input
+                task: input.task,
+                status: input.status
               },
             ]);
-            setInput("");
         }
     };
 
-    const setInputValue = (value) => {
-        setInput(value);
-    }
-
     const deleteThisRowTask = (data) => {
-        console.log("inside delete")
         const removeItem = todoList.filter((todo) => {
             return todo.id !== data.id;
         });
@@ -34,49 +55,26 @@ const ToDoList = () => {
     }
 
     const EditThisRowTask = (data) => {
-        setInput(data.task);
-        setBackupText(data.id)
-        setUpdateAction(true);
-    }
-
-    const updateDataToList = (e) => {
-        e.preventDefault();
-        console.log("inside update")
-        const updateItem = todoList.map((todo) => {
-            if (todo.id === backupText) {
-                todo.task = input;
-            }
-            return todo;
-        });
-        setTodoList(updateItem);
-        setInput("");
-        setUpdateAction(false);
+        setInput({ id: data.id, task: data.task, status: data.status });
     }
 
     return (
-        <div>
-            <form onSubmit={updateaction === true ? updateDataToList : addDataToList}>
-                <h1>TO DO</h1>
-                <br />
-                <input type="text" value={input} onChange={(e) => setInputValue(e.target.value)} />
-                <button type="submit">{updateaction === true ? 'update' : 'Add'}</button>
-            </form>
-            <div>
-                <ul>
-                    {todoList.map((todo) => {
-                    return (
-                        <ul key={todo.id}>
-                            <li>
-                                <div>
-                                    <span>{todo.task}</span>
-                                    <button onClick={() => EditThisRowTask(todo)}>Edit</button>
-                                    <button onClick={() => deleteThisRowTask(todo)}>Delete</button>
-                                </div>
-                            </li>
-                        </ul>
-                    );
-                    })}
-                </ul>
+        <div style={{width:'100%',height:'90vh',border:'2px solid white', display:'flex',flexDirection:'row'}}>
+            <div style={{width:'50%',border:'2px solid white' }}>
+                <button onClick={handleGoBack}>Go Back</button>
+                <ToDoListForm 
+                    setInput={setInput}
+                    addDataToList={addDataToList}
+                    input={input}
+                />
+            </div>
+            <div style={{width:'50%',border:'2px solid white', padding:'20px' }}>
+                <ListTodoList 
+                todoList={todoList}
+                EditThisRowTask={EditThisRowTask}
+                deleteThisRowTask={deleteThisRowTask}
+                setTodoList={setTodoList}
+                />
             </div>
         </div>
     )
