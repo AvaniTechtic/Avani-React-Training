@@ -1,4 +1,11 @@
+import { useEffect } from "react";
+
 function ToDoListForm({setInput, addDataToList, input}) {
+
+    useEffect(() => {
+        console.log("insde tofoform list")
+    }, [])
+    
     return (
         <div>
             <form onSubmit={addDataToList}>

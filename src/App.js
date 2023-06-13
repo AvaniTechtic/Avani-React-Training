@@ -1,9 +1,9 @@
 import './App.css';
-import CounterApp from './Component/CounterApp';
-import ToDoList from './Component/ToDoList';
+import CounterApp from './Component/Counter/CounterApp';
+import ToDoList from './Component/ToDotask/ToDoList';
 import { createBrowserRouter, RouterProvider, useNavigate } from "react-router-dom";
 import HomeComponent from './Component/Home';
-import MyForm from './Component/MyForm'
+import MyForm from './Component/Login/MyForm'
 import { useEffect, useState } from 'react';
 
 const router = createBrowserRouter([

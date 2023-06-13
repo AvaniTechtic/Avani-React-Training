@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../Services/LoginApiService';
 
 function MyForm() {
     const [username, setUsername] = useState('');
@@ -7,17 +8,33 @@ function MyForm() {
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-        // Add your login logic here
-        if (username === "Avani" && password === "Dalal") {
+    const handleLogin = (e) => {
+        e.preventDefault()
+        // if user logged in successfully redirect to page otherwise throw the error
+        console.log("inside login handleLogin function")
+        const data = { Email: username, Password: password }
+        login(data)
+        .then(response => {
             console.log("successfull")
             localStorage.setItem("loggedIn", true);
-        //   setIsAuthenticated(true);
+            // localStorage.setItem("User Token", respData.Token);
+            
             navigate('/main');
-        } else {
-          // Handle login failure
-          alert('Login failed!');
-        }
+        })
+        .catch(error => {
+            // Handle login failure
+            console.log("error while login", error)
+            alert('Login failed!');
+        })
+        // if (username === "Avani" && password === "Dalal") {
+        //     console.log("successfull")
+        //     localStorage.setItem("loggedIn", true);
+        // //   setIsAuthenticated(true);
+        //     navigate('/main');
+        // } else {
+        //   // Handle login failure
+        //   alert('Login failed!');
+        // }
       };
 
     return (
@@ -42,7 +59,7 @@ function MyForm() {
                         style={{padding: '5px', width: '200px'}}
                     />
                 </div>
-                <button style={{padding: '10px 20px', marginTop: '15px', borderRadius: '20px', backgroundColor: 'black', borderColor: 'black', border: '0', color: 'white', marginBottom: '30px' }}>Login</button>
+                <button type="submit" style={{padding: '10px 20px', marginTop: '15px', borderRadius: '20px', backgroundColor: 'black', borderColor: 'black', border: '0', color: 'white', marginBottom: '30px' }}>Login</button>
             </form>
         </div>
     );
