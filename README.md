@@ -1,9 +1,9 @@
 # Login Screen
 The initial screen of the application is the login screen. To successfully log in, the following credentials must be entered:
 
-**Username: Avani**
+**Username: avani@gmail.com**
 
-**Password: Dalal**
+**Password: Password**
 
 If the entered credentials are correct, the user will be redirected to the main page. Otherwise, an error alert will be displayed, indicating that the login failed.
 
